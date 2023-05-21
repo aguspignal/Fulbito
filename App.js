@@ -1,10 +1,10 @@
-import UserContextProvider from "./src/context/UserContextProvider"
 import Main from "./Main"
+import AuthContextProvider from "./src/context/AuthContext"
 
 export default function App() {
    return (
-      <UserContextProvider>
+      <AuthContextProvider>
          <Main />
-      </UserContextProvider>
+      </AuthContextProvider>
    )
 }

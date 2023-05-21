@@ -1,12 +1,12 @@
-import { Provider as PaperProvider } from "react-native-paper"
 import { NavigationContainer } from "@react-navigation/native"
-import useUser from "./src/hooks/useUser"
+import { Provider as PaperProvider } from "react-native-paper"
 import AppStack from "./src/components/AppStack"
 import AuthStack from "./src/components/AuthStack"
-import Loading from "./src/components/Loading"
+import Loading from "./src/screens/Loading"
+import useAuth from "./src/hooks/useAuth"
 
 const Main = () => {
-   const { user, loading } = useUser()
+   const { auth, loading } = useAuth()
 
    if (loading) {
       return <Loading />
@@ -14,7 +14,7 @@ const Main = () => {
 
    return (
       <NavigationContainer>
-         <PaperProvider>{user ? <AppStack /> : <AuthStack />}</PaperProvider>
+         <PaperProvider>{auth ? <AppStack /> : <AuthStack />}</PaperProvider>
       </NavigationContainer>
    )
 }

@@ -1,10 +1,10 @@
+import { StyleSheet, Text, View } from "react-native"
 import React from "react"
-import { StyleSheet, View, Text } from "react-native"
 
-const Loading = () => {
+const Club = () => {
    return (
       <View style={styles.container}>
-         <Text>Loading, please wait</Text>
+         <Text>Club</Text>
       </View>
    )
 }
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
    },
 })
 
-export default Loading
+export default Club

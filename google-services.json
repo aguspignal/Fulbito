@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "744305514499",
+    "project_id": "fulbitoapp-421",
+    "storage_bucket": "fulbitoapp-421.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744305514499:android:fb2bc23f1a9ef08c681636",
+        "android_client_info": {
+          "package_name": "com.fulbito.fulbitoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744305514499-60upe72h9l3vqsv79l2blune4an6cde9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr_opi9YHbXKVhUZRLPKCT2oUDCLF0tpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744305514499-60upe72h9l3vqsv79l2blune4an6cde9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
