@@ -1,7 +1,8 @@
 const pallete = {
    black: "#3A3A3A",
    white: "#FEFEFE",
-   grey: "#ADB5BD",
+   grey: "#65737E",
+   grey50: "#65737E88",
    green: "#35C97D",
    darkgreen: "#258C57",
    lightblue: "#00C6EE",
@@ -17,11 +18,12 @@ export const theme = {
       white: pallete.white,
       black: pallete.black,
       grey: pallete.grey,
+      lightgrey: pallete.grey50,
       primary: pallete.green,
       darkprimary: pallete.darkgreen,
-      darkersecondary: pallete.darkblue,
-      darksecondary: pallete.darkblue,
       secondary: pallete.blue,
+      darksecondary: pallete.darkblue,
+      darkersecondary: pallete.darkerblue,
       lightsecondary: pallete.lightblue,
       danger: pallete.red,
       warning: pallete.yellow,
@@ -35,8 +37,8 @@ export const theme = {
    },
 
    fontSize: {
-      m: 16,
       s: 14,
+      m: 16,
       l: 18,
       xl: 24,
    },
@@ -58,4 +60,10 @@ export const theme = {
          fontSize: 16,
       },
    },
+
+   textWeights: {
+      thin: 400,
+      regular: 500,
+      bold: 600
+   }
 }

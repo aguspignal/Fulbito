@@ -1,36 +1,30 @@
 {
-  "expo": {
-    "name": "fulbito1",
-    "slug": "fulbito1",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+   "expo": {
+      "name": "fulbito1",
+      "slug": "fulbito1",
+      "version": "1.0.0",
+      "orientation": "portrait",
+      "icon": "./assets/messi.png",
+      "userInterfaceStyle": "light",
+      "splash": {
+         "image": "./assets/messi.png",
+         "resizeMode": "contain",
+         "backgroundColor": "#ffffff"
       },
-      "package": "com.fulbito.fulbitoapp"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "55229fe8-9c18-4cee-938e-bbefd259da70"
+      "assetBundlePatterns": ["**/*"],
+      "ios": {
+         "supportsTablet": true
+      },
+      "android": {
+         "adaptiveIcon": {
+            "foregroundImage": "./assets/messi.png"
+         },
+         "package": "com.fulbito.fulbitoapp"
+      },
+      "extra": {
+         "eas": {
+            "projectId": "55229fe8-9c18-4cee-938e-bbefd259da70"
+         }
       }
-    }
-  }
+   }
 }

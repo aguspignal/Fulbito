@@ -38,7 +38,7 @@ const AppStack = () => {
                   )
                },
                tabBarLabel: route.name,
-               tabBarLabelStyle: { fontSize: 12, color: theme.colors.black },
+               tabBarLabelStyle: { fontSize: theme.fontSize.s, color: theme.colors.black },
             })}
          >
             <Tab.Screen name="Agenda" component={Agenda} />
