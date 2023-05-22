@@ -2,7 +2,7 @@ import { auth_errors } from "../../utils/auth-errors"
 import { Button, Snackbar } from "react-native-paper"
 import { getErrorTitle } from "../../firebase/actions"
 import { KeyboardAwareScrollView } from "@codler/react-native-keyboard-aware-scroll-view"
-import { ResultError } from "../../types/formTypes"
+import { ResultError } from "../../types/form"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../../utils/theme"
 import { useState } from "react"
@@ -18,20 +18,25 @@ const SignIn = ({ navigation }: Props) => {
    const [email, setEmail] = useState<string>("")
    const [password, setPassword] = useState<string>("")
 
+   const [btnDisabled, setBtnDisabled] = useState<boolean>(false)
    const [error, setError] = useState<string | null>(null)
    const [errorVisible, setErrorVisible] = useState(false)
 
    const { signIn } = useAuth()
 
    async function handleSignIn() {
+      setBtnDisabled(true)
+
       if (email.length <= 0 || !email) {
          setError(getErrorTitle(auth_errors.NO_EMAIL))
          setErrorVisible(true)
+         setBtnDisabled(false)
          return
       }
       if (password.length <= 0 || !password) {
          setError(getErrorTitle(auth_errors.NO_PASSWORD))
          setErrorVisible(true)
+         setBtnDisabled(false)
          return
       }
 
@@ -41,6 +46,7 @@ const SignIn = ({ navigation }: Props) => {
          setError(getErrorTitle(result.code))
          setErrorVisible(true)
       }
+      setBtnDisabled(false)
    }
 
    // useEffect(() => {}, [])
@@ -72,18 +78,19 @@ const SignIn = ({ navigation }: Props) => {
             <View style={styles.btnsContainer}>
                <Button
                   mode="contained"
-                  onPress={handleSignIn}
+                  onPress={btnDisabled ? () => {} : handleSignIn}
+                  loading={btnDisabled}
                   buttonColor={theme.colors.primary}
                   textColor={theme.colors.white}
                   labelStyle={styles.btnLabel}
-                  style={styles.signInBtn}
+                  style={[styles.signInBtn, btnDisabled ? { backgroundColor: theme.colors.darkprimary } : null]}
                >
                   Sign in
                </Button>
                <Button
                   mode="text"
-                  onPress={() => navigation.navigate("Signup")}
-                  textColor={theme.colors.primary}
+                  onPress={btnDisabled ? () => {} : () => navigation.navigate("Signup")}
+                  textColor={btnDisabled ? theme.colors.darkprimary : theme.colors.primary}
                   labelStyle={styles.btnLabel}
                >
                   Don't have an account? Sign up

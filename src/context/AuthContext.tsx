@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from "react"
 import { firebaseAuth } from "../firebase/config"
 import { getUserFromDatabase, saveUserInDatabase } from "../firebase/actions"
-import { AuthError, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { DocumentData } from "firebase/firestore"
-import { ResultError, SignUpData } from "../types/formTypes"
-import { FirebaseError } from "firebase/app"
+import { ResultError, SignUpData } from "../types/form"
+import { UserData } from "../types/user"
 
 type Auth = DocumentData | SignUpData | undefined | null
 
@@ -69,27 +69,21 @@ const AuthContextProvider = ({ children }: Props) => {
       let result: ResultError = { status: false, code: null, title: null }
       try {
          const userCredentials = await createUserWithEmailAndPassword(firebaseAuth, email, password)
-         const userData: SignUpData = {
+         const user: UserData = {
             uid: userCredentials.user.uid,
             email,
             username,
             clubHincha,
          }
-         saveUserInDatabase(userData)
-         setAuth(userData)
-         AsyncStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData))
+         saveUserInDatabase(user)
+         setAuth(user)
+         AsyncStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user))
       } catch (err: any) {
          result.status = true
          result.code = err.code
       }
       return result
    }
-
-   // async function signUp(userData: SignUpData): Promise<void> {
-   //    saveUserInDatabase(userData)
-   //    setAuth(userData)
-   //    AsyncStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData))
-   // }
 
    async function signOut(): Promise<void> {
       setAuth(null)

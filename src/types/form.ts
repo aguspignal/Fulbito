@@ -6,7 +6,7 @@ export type SignInData = {
 export type SignUpData = {
    uid: string
    email: string
-   password?: string
+   password: string
    username: string
    clubHincha: string
 }

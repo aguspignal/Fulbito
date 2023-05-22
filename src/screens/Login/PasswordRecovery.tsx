@@ -1,11 +1,14 @@
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { theme } from "../../utils/theme"
+import TextStyled from "../../components/StyledComponents/TextStyled"
 
 const PasswordRecovery = () => {
    return (
       <View style={styles.container}>
-         <Text>Password Recovery</Text>
+         <TextStyled variant="h2" align="center">
+            Password Recovery
+         </TextStyled>
       </View>
    )
 }

@@ -4,7 +4,7 @@ import { clubsArg } from "../../utils/clubs-arg"
 import { getErrorTitle } from "../../firebase/actions"
 import { KeyboardAwareScrollView } from "@codler/react-native-keyboard-aware-scroll-view"
 import { Picker } from "@react-native-picker/picker"
-import { ResultError } from "../../types/formTypes"
+import { ResultError } from "../../types/form"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../../utils/theme"
 import { useState } from "react"
@@ -16,12 +16,15 @@ interface Props {
    navigation: any
 }
 
+// TODO: club hincha picker first value
+
 const SignIn = ({ navigation }: Props) => {
    const [email, setEmail] = useState<string>("")
    const [password, setPassword] = useState<string>("")
    const [username, setUsername] = useState<string>("")
    const [clubHincha, setClubHincha] = useState<string>("")
 
+   const [btnDisabled, setBtnDisabled] = useState<boolean>(false)
    const [error, setError] = useState<string | null>(null)
    const [errorVisible, setErrorVisible] = useState(false)
 
@@ -30,24 +33,30 @@ const SignIn = ({ navigation }: Props) => {
    const clubs = clubsArg.map(club => <Picker.Item key={clubsArg.indexOf(club)} label={club} value={club} />)
 
    async function handleSignUp() {
+      setBtnDisabled(true)
+
       if (username.length <= 0 || !username) {
-         setError(getErrorTitle(auth_errors.INVALID_USERNAME))
+         setError(getErrorTitle(auth_errors.NO_USERNAME))
          setErrorVisible(true)
+         setBtnDisabled(false)
          return
       }
       if (email.length <= 0 || !email) {
-         setError(getErrorTitle(auth_errors.INVALID_EMAIL))
+         setError(getErrorTitle(auth_errors.NO_EMAIL))
          setErrorVisible(true)
+         setBtnDisabled(false)
          return
       }
       if (password.length <= 0 || !password) {
-         setError(getErrorTitle(auth_errors.INVALID_PASSWORD))
+         setError(getErrorTitle(auth_errors.NO_PASSWORD))
          setErrorVisible(true)
+         setBtnDisabled(false)
          return
       }
       if (clubHincha.length <= 0 || !clubHincha) {
-         setError(getErrorTitle(auth_errors.INVALID_CLUBHINCHA))
+         setError(getErrorTitle(auth_errors.NO_CLUBHINCHA))
          setErrorVisible(true)
+         setBtnDisabled(false)
          return
       }
 
@@ -58,6 +67,7 @@ const SignIn = ({ navigation }: Props) => {
          setError(getErrorTitle(result.code))
          setErrorVisible(true)
       }
+      setBtnDisabled(false)
    }
 
    return (
@@ -99,19 +109,20 @@ const SignIn = ({ navigation }: Props) => {
             <View style={styles.btnsContainer}>
                <Button
                   mode="contained"
-                  onPress={handleSignUp}
+                  onPress={btnDisabled ? () => {} : handleSignUp}
+                  loading={btnDisabled}
                   buttonColor={theme.colors.primary}
                   textColor={theme.colors.white}
                   labelStyle={styles.btnLabel}
-                  style={styles.signUpBtn}
+                  style={[styles.signUpBtn, btnDisabled ? { backgroundColor: theme.colors.darkprimary } : null]}
                >
                   Create account
                </Button>
 
                <Button
                   mode="text"
-                  onPress={() => navigation.navigate("Signin")}
-                  textColor={theme.colors.primary}
+                  onPress={btnDisabled ? () => {} : () => navigation.navigate("Signin")}
+                  textColor={btnDisabled ? theme.colors.darkprimary : theme.colors.primary}
                   labelStyle={styles.btnLabel}
                >
                   Already have an account? Sign in

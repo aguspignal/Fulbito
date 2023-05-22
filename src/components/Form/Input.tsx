@@ -20,6 +20,7 @@ const Input = ({ state, setState, placeholder, securedEntry = false, style }: Pr
          placeholderTextColor={theme.colors.white}
          underlineColor={theme.colors.white}
          activeUnderlineColor={theme.colors.white}
+         selectionColor={theme.colors.secondary}
          textColor={theme.colors.white}
          contentStyle={styles.inputContent}
          style={[styles.input, style]}
