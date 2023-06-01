@@ -1,11 +1,11 @@
-import React, { createContext, useEffect, useState } from "react"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { DocumentData } from "firebase/firestore"
 import { firebaseAuth } from "../firebase/config"
 import { getUserFromDatabase, saveUserInDatabase } from "../firebase/actions"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { DocumentData } from "firebase/firestore"
 import { ResultError, SignUpData } from "../types/form"
 import { UserData } from "../types/user"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import React, { createContext, useEffect, useState } from "react"
 
 type Auth = DocumentData | SignUpData | undefined | null
 
@@ -14,7 +14,12 @@ type AuthContextValue = {
    setAuth: React.Dispatch<React.SetStateAction<DocumentData | SignUpData | null | undefined>>
    loading: boolean
    signIn: (email: string, password: string) => Promise<ResultError>
-   signUp: (email: string, password: string, username: string, clubHincha: string) => Promise<ResultError>
+   signUp: (
+      email: string,
+      password: string,
+      username: string,
+      clubHincha: string
+   ) => Promise<ResultError>
    signOut: () => Promise<void>
 }
 
@@ -65,7 +70,12 @@ const AuthContextProvider = ({ children }: Props) => {
       return result
    }
 
-   async function signUp(email: string, password: string, username: string, clubHincha: string): Promise<ResultError> {
+   async function signUp(
+      email: string,
+      password: string,
+      username: string,
+      clubHincha: string
+   ): Promise<ResultError> {
       let result: ResultError = { status: false, code: null, title: null }
       try {
          const userCredentials = await createUserWithEmailAndPassword(firebaseAuth, email, password)

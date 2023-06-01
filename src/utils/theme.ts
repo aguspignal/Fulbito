@@ -37,24 +37,22 @@ export const theme = {
    },
 
    fontSize: {
-      s: 14,
-      m: 16,
-      l: 18,
-      xl: 24,
+      xs: 14,
+      s: 16,
+      m: 18,
+      l: 22,
+      xl: 32,
    },
 
    textVariants: {
       h1: {
          fontSize: 32,
-         fontWeight: 600,
       },
       h2: {
-         fontSize: 28,
-         fontWeight: 500,
+         fontSize: 24,
       },
       h3: {
          fontSize: 24,
-         fontWeight: 500,
       },
       body: {
          fontSize: 16,

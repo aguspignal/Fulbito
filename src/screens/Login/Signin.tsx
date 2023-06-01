@@ -6,6 +6,8 @@ import { ResultError } from "../../types/form"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../../utils/theme"
 import { useState } from "react"
+import ButtonPrimary from "../../components/Buttons/ButtonPrimary"
+import ButtonTextPrimary from "../../components/Buttons/ButtonTextPrimary"
 import Input from "../../components/Form/Input"
 import TextStyled from "../../components/StyledComponents/TextStyled"
 import useAuth from "../../hooks/useAuth"
@@ -59,10 +61,20 @@ const SignIn = ({ navigation }: Props) => {
             </TextStyled>
 
             <View style={styles.formContainer}>
-               <Input state={email} setState={setEmail} placeholder="Email" style={styles.inputEmail} />
+               <Input
+                  state={email}
+                  setState={setEmail}
+                  placeholder="Email"
+                  style={styles.inputEmail}
+               />
 
                <View>
-                  <Input state={password} setState={setPassword} placeholder="Password" securedEntry={true} />
+                  <Input
+                     state={password}
+                     setState={setPassword}
+                     placeholder="Password"
+                     securedEntry={true}
+                  />
 
                   <Button
                      mode="text"
@@ -75,26 +87,19 @@ const SignIn = ({ navigation }: Props) => {
                   </Button>
                </View>
             </View>
-            <View style={styles.btnsContainer}>
-               <Button
-                  mode="contained"
-                  onPress={btnDisabled ? () => {} : handleSignIn}
-                  loading={btnDisabled}
-                  buttonColor={theme.colors.primary}
-                  textColor={theme.colors.white}
-                  labelStyle={styles.btnLabel}
-                  style={[styles.signInBtn, btnDisabled ? { backgroundColor: theme.colors.darkprimary } : null]}
-               >
+            <View style={styles.btnContainer}>
+               <ButtonPrimary onPress={btnDisabled ? () => {} : handleSignIn} loading={btnDisabled}>
                   Sign in
-               </Button>
-               <Button
-                  mode="text"
+               </ButtonPrimary>
+            </View>
+
+            <View style={styles.btnContainer}>
+               <ButtonTextPrimary
                   onPress={btnDisabled ? () => {} : () => navigation.navigate("Signup")}
-                  textColor={btnDisabled ? theme.colors.darkprimary : theme.colors.primary}
-                  labelStyle={styles.btnLabel}
+                  loading={btnDisabled}
                >
                   Don't have an account? Sign up
-               </Button>
+               </ButtonTextPrimary>
             </View>
          </View>
 
@@ -139,15 +144,9 @@ const styles = StyleSheet.create({
       paddingLeft: 0,
       padding: 0,
    },
-   btnsContainer: {
+   btnContainer: {
       alignItems: "center",
-   },
-   signInBtn: {
-      borderRadius: theme.spacing.s,
-      marginBottom: 25,
-   },
-   btnLabel: {
-      fontSize: theme.fontSize.m,
+      marginVertical: 10,
    },
 })
 

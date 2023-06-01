@@ -1,7 +1,7 @@
-import React from "react"
 import { StyleSheet } from "react-native"
-import { theme } from "../../utils/theme"
 import { TextInput } from "react-native-paper"
+import { theme } from "../../utils/theme"
+import React from "react"
 
 interface Props {
    state: any

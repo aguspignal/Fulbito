@@ -1,7 +1,6 @@
 import { auth_errors } from "../utils/auth-errors"
 import { db } from "./config"
 import { doc, getDoc, setDoc } from "firebase/firestore"
-import { SignUpData } from "../types/form"
 import { UserData } from "../types/user"
 
 interface SaveUserFn {({}: UserData): Promise<void>}

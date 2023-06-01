@@ -1,10 +1,16 @@
 import { Icon } from "@rneui/themed"
+import { Match } from "../../types/match"
+import { parseDate, parsePlace, parseTime } from "../../utils/parseData"
 import { StyleSheet, View } from "react-native"
 import { theme } from "../../utils/theme"
 import React from "react"
 import TextStyled from "../StyledComponents/TextStyled"
 
-const MatchCardInfo = () => {
+type Props = {
+   match: Match
+}
+
+const MatchCardInfo = ({ match }: Props) => {
    return (
       <View style={styles.container}>
          <View style={styles.matchInfoTopContainer}>
@@ -16,8 +22,8 @@ const MatchCardInfo = () => {
                      color={theme.colors.white}
                      style={styles.matchInfoIcon}
                   />
-                  <TextStyled color="white" size="l">
-                     Sabado 20/05
+                  <TextStyled color="white" size="m">
+                     {parseDate(match.date.day)}
                   </TextStyled>
                </View>
             </View>
@@ -29,8 +35,8 @@ const MatchCardInfo = () => {
                      color={theme.colors.white}
                      style={styles.matchInfoIcon}
                   />
-                  <TextStyled color="white" size="l">
-                     17:00hs
+                  <TextStyled color="white" size="m">
+                     {parseTime(match.date.time)}
                   </TextStyled>
                </View>
             </View>
@@ -44,8 +50,8 @@ const MatchCardInfo = () => {
                      color={theme.colors.white}
                      style={styles.matchInfoIcon}
                   />
-                  <TextStyled color="white" size="l">
-                     Master F5
+                  <TextStyled color={match.place !== undefined ? "white" : "grey"} size="m">
+                     {parsePlace(match)}
                   </TextStyled>
                </View>
             </View>
@@ -57,8 +63,8 @@ const MatchCardInfo = () => {
                      color={theme.colors.white}
                      style={styles.matchInfoIcon}
                   />
-                  <TextStyled color="white" size="l">
-                     Futbol 5
+                  <TextStyled color="white" size="m">
+                     {match.matchType}
                   </TextStyled>
                </View>
             </View>
@@ -86,10 +92,11 @@ const styles = StyleSheet.create({
    },
    matchInfo: {
       flexDirection: "row",
+      alignItems: "center",
       marginLeft: theme.spacing.l,
    },
    matchInfoIcon: {
-      marginRight: theme.spacing.s,
+      marginRight: theme.spacing.m,
    },
 })
 

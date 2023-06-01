@@ -30,7 +30,9 @@ const SignIn = ({ navigation }: Props) => {
 
    const { signUp } = useAuth()
 
-   const clubs = clubsArg.map(club => <Picker.Item key={clubsArg.indexOf(club)} label={club} value={club} />)
+   const clubs = clubsArg.map(club => (
+      <Picker.Item key={clubsArg.indexOf(club)} label={club} value={club} />
+   ))
 
    async function handleSignUp() {
       setBtnDisabled(true)
@@ -78,9 +80,19 @@ const SignIn = ({ navigation }: Props) => {
             </TextStyled>
 
             <View style={styles.formContainer}>
-               <Input state={username} setState={setUsername} placeholder="Username" style={styles.inputMargin} />
+               <Input
+                  state={username}
+                  setState={setUsername}
+                  placeholder="Username"
+                  style={styles.inputMargin}
+               />
 
-               <Input state={email} setState={setEmail} placeholder="Email" style={styles.inputMargin} />
+               <Input
+                  state={email}
+                  setState={setEmail}
+                  placeholder="Email"
+                  style={styles.inputMargin}
+               />
 
                <Input
                   state={password}
@@ -114,7 +126,10 @@ const SignIn = ({ navigation }: Props) => {
                   buttonColor={theme.colors.primary}
                   textColor={theme.colors.white}
                   labelStyle={styles.btnLabel}
-                  style={[styles.signUpBtn, btnDisabled ? { backgroundColor: theme.colors.darkprimary } : null]}
+                  style={[
+                     styles.signUpBtn,
+                     btnDisabled ? { backgroundColor: theme.colors.darkprimary } : null,
+                  ]}
                >
                   Create account
                </Button>

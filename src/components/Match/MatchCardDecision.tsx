@@ -9,13 +9,13 @@ const MatchCardDecision = () => {
       <View style={styles.decisionContainer}>
          <TouchableOpacity style={[styles.acceptContainer, styles.decision]} activeOpacity={0.8}>
             <Icon name="calendar-multiselect" type="material-community" />
-            <TextStyled weight="regular" size="l">
+            <TextStyled weight="regular" size="m">
                Aceptar
             </TextStyled>
          </TouchableOpacity>
          <TouchableOpacity style={[styles.declineContainer, styles.decision]} activeOpacity={0.8}>
             <Icon name="calendar-multiselect" type="material-community" />
-            <TextStyled weight="regular" size="l">
+            <TextStyled weight="regular" size="m">
                Rechazar
             </TextStyled>
          </TouchableOpacity>

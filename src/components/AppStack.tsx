@@ -1,19 +1,22 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Icon } from "@rneui/themed"
 import { StatusBar } from "expo-status-bar"
+import { theme } from "../utils/theme"
 import Account from "../screens/Profile/Account"
 import Agenda from "../screens/Agenda/Agenda"
 import Club from "../screens/Club/Club"
-import { theme } from "../utils/theme"
 
 const Tab = createBottomTabNavigator()
 
 const AppStack = () => {
+   const TabScreenOptions: BottomTabNavigationOptions = {}
+
    return (
       <>
-         <StatusBar style="dark" />
+         <StatusBar style="light" />
          <Tab.Navigator
             screenOptions={({ route }) => ({
+               tabBarStyle: { height: 60 },
                tabBarIcon: ({ focused }) => {
                   let iconName: string = ""
 
@@ -38,10 +41,17 @@ const AppStack = () => {
                   )
                },
                tabBarLabel: route.name,
-               tabBarLabelStyle: { fontSize: theme.fontSize.s, color: theme.colors.black },
+               tabBarLabelStyle: {
+                  fontSize: theme.fontSize.xs,
+                  color: theme.colors.black,
+                  marginBottom: theme.spacing.s,
+               },
+               headerStyle: { backgroundColor: theme.colors.darksecondary },
+               headerTitleAlign: "center",
+               headerTitleStyle: { color: theme.colors.white },
             })}
          >
-            <Tab.Screen name="Agenda" component={Agenda} />
+            <Tab.Screen name="Agenda" component={Agenda} options={TabScreenOptions} />
             <Tab.Screen name="Club" component={Club} />
             <Tab.Screen name="Account" component={Account} />
          </Tab.Navigator>

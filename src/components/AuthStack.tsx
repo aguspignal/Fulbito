@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StatusBar } from "expo-status-bar"
+import PasswordRecovery from "../screens/Login/PasswordRecovery"
 import SignIn from "../screens/Login/Signin"
 import SignUp from "../screens/Login/Signup"
-import PasswordRecovery from "../screens/Login/PasswordRecovery"
 
 const Stack = createNativeStackNavigator()
 

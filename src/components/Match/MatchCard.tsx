@@ -1,31 +1,22 @@
-import { StyleSheet, View, TouchableOpacity } from "react-native"
+import { Match } from "../../types/match"
+import { StyleSheet, TouchableOpacity } from "react-native"
 import { theme } from "../../utils/theme"
+import MatchCardDecision from "./MatchCardDecision"
 import MatchCardInfo from "./MatchCardInfo"
 import React from "react"
 import TextStyled from "../StyledComponents/TextStyled"
-import MatchCardDecision from "./MatchCardDecision"
 
-const MatchCard = () => {
-   const handleCardTouch = () => {
-      // transform: [{ scale: 1 }],
-      styles.container.transform = [{ scale: 1.1 }]
-   }
-   const handleCardTouchEnd = () => {
-      // transform: [{ scale: 1 }],
-      styles.container.transform = [{ scale: 1 }]
-   }
+type Props = {
+   match: Match
+}
 
+const MatchCard = ({ match }: Props) => {
    return (
-      <TouchableOpacity
-         style={styles.container}
-         onPressIn={handleCardTouch}
-         onPressOut={handleCardTouchEnd}
-         activeOpacity={0.95}
-      >
-         <TextStyled variant="h3" align="center" color="white">
-            Te han invitado a un partido!
+      <TouchableOpacity style={styles.container} activeOpacity={0.95}>
+         <TextStyled size="l" align="center" color="white">
+            Te invitaron a un partido!
          </TextStyled>
-         <MatchCardInfo />
+         <MatchCardInfo match={match} />
          <MatchCardDecision />
       </TouchableOpacity>
    )
@@ -37,17 +28,16 @@ const styles = StyleSheet.create({
       height: 200,
       backgroundColor: theme.colors.darksecondary,
       borderRadius: theme.spacing.xl,
-      marginVertical: theme.spacing.m,
+      marginVertical: theme.spacing.l,
       paddingTop: theme.spacing.l,
-      shadowColor: "#000",
+      shadowColor: theme.colors.black,
       shadowOffset: {
-         width: 0,
-         height: 1,
+         width: 1,
+         height: 0,
       },
-      shadowOpacity: 0.5,
+      shadowOpacity: 0.8,
       shadowRadius: 1.5,
       elevation: 8,
-      transform: [{ scale: 1 }],
    },
 })
 
